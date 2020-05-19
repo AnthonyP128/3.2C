@@ -19,7 +19,7 @@ void setup() {
     pinMode(boardLed,OUTPUT); // Our on-board LED is output as well
 
     // Here we are going to subscribe to your buddy's event using Particle.subscribe
-    Particle.subscribe("buddy_unique_event_name", myHandler);
+    Particle.subscribe("my_Argon", myHandler);
     // Subscribe will listen for the event buddy_unique_event_name and, when it finds it, will run the function myHandler()
     // (Remember to replace buddy_unique_event_name with your buddy's actual unique event name that they have in their firmware.)
     // myHandler() is declared later in this app.
@@ -68,7 +68,7 @@ void loop() {
     // This loop sends a publish when the beam is broken.
     if (analogRead(photosensor)>beamThreshold) {
         if (beamBroken==true) {
-            Particle.publish("Deakin_RIOT_SIT210_Photon_Buddy", "wave");
+            Particle.subscribe("Deakin_RIOT_SIT210_Photon_Buddy", "wave");
             // publish this public event
             // rename your_unique_event_name with your actual unique event name. No spaces, 63 ASCII characters.
             // give your event name to your buddy and have them put it in their app.
@@ -90,7 +90,7 @@ void loop() {
     
     if (analogRead(photosensor)>beamThreshold) {
         if (beamBroken==false) {
-            Particle.publish("Deakin_RIOT_SIT210_Photon_Buddy", "pat");
+            Particle.subscribe("Deakin_RIOT_SIT210_Photon_Buddy", "pat");
             // publish this public event
             // rename your_unique_event_name with your actual unique event name. No spaces, 63 ASCII characters.
             // give your event name to your buddy and have them put it in their app.
